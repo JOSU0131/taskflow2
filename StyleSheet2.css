@@ -1,0 +1,73 @@
+﻿base{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6; /* Un gris muy suave de fondo */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Para que el footer siempre esté abajo */
+}
+
+
+header {
+    background: #4a90e2; /* Azul profesional */
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* 3. Estilo del contenido principal */
+main {
+    flex: 1; /* Ocupa todo el espacio disponible */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor {
+    background: white;
+    padding: 30px;
+    border-radius: 15px; /* Esquinas redondeadas modernas */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra suave */
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: #4a90e2;
+    margin-bottom: 15px;
+}
+
+/* 4. Estilo de Botón resultón */
+button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease; /* Animación suave */
+    margin-top: 20px;
+}
+
+    button:hover {
+        background-color: #357abd; /* Color más oscuro al pasar el ratón */
+    }
+
+/* 5. Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #333;
+    color: white;
+    font-size: 0.9rem;
+}
