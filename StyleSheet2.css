@@ -14,8 +14,22 @@ body {
     min-height: 100vh; /* Para que el footer siempre esté abajo */
 }
 
+p {
+    /* 1. Tipografía */
+    font-family: Arial, sans-serif; /* Fuente clara y moderna */
+    font-size: 16px; /* Tamaño de letra legible */
+    color: #333333; /* Gris oscuro, mejor que negro puro */
 
-header {
+    /* 2. Espaciado (lo más importante) */
+    line-height: 1.6; /* Espacio entre líneas (1.5-1.6 es ideal) */
+    margin-bottom: 20px; /* Espacio debajo del párrafo */
+
+    /* 3. Ajustes de legibilidad */
+    max-width: 700px; /* Evita líneas demasiado largas */
+    text-align: left; /* Alineación izquierda estándar */
+
+
+    header {
     background: #4a90e2; /* Azul profesional */
     color: white;
     padding: 2rem;
