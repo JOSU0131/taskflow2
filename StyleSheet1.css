@@ -183,6 +183,98 @@ header {
     background-color: #2ecc71; /* Verde */
 }
 
+
+.app {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    font-family: 'Lato', sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+#searchInput {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #3892dd;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+    #searchInput:focus {
+        border-color: #4575b6;
+        box-shadow: 0 0 8px rgba(69, 117, 182, 0.2);
+    }
+
+#categoryFilter {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: 2px solid #3892dd;
+    border-radius: 6px;
+    background-color: #fff;
+    margin-top: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+    #categoryFilter:focus {
+        border-color: #4575b6;
+    }
+
+#searchButton {
+    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #3892dd;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    #searchButton:hover {
+        background-color: #2c78b8;
+    }
+
+@media (max-width: 600px) {
+    .app {
+        padding: 15px;
+        margin: 10px auto;
+    }
+
+    #searchInput,
+    #categoryFilter {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    #searchButton {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+add-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    padding: 1em;
+    background: #f5f5f5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+
 /* Calendario */
 #calendar {
     margin-top: 20px;
