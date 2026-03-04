@@ -105,26 +105,28 @@
             </main>
         </div>
 
+        <div>
+            <h3>Filtros y Búsqueda</h3>
+
+            <div class="filter-group">
+                <label for="searchInput">Buscar tarea:</label>
+                <input type="text" id="searchInput" placeholder="Escribe para buscar..." />
+            </div>
+
+            <div class="filter-group">
+                <p>Categorías:</p>
+                <ul class="category-filters" id="categoryFilters">
+                    <li><button class="filter-btn active" data-category="Todas">Todas</button></li>
+                    <li><button class="filter-btn" data-category="Trabajo">Trabajo</button></li>
+                    <li><button class="filter-btn" data-category="Formación">Formación</button></li>
+                    <li><button class="filter-btn" data-category="Equipo">Equipo</button></li>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
-    <aside>
-        <h3>Filtros y Búsqueda</h3>
-
-        <div class="filter-group">
-            <label for="searchInput">Buscar tarea:</label>
-            <input type="text" id="searchInput" placeholder="Escribe para buscar..." />
-        </div>
-
-        <div class="filter-group">
-            <p>Categorías:</p>
-            <ul class="category-filters" id="categoryFilters">
-                <li><button class="filter-btn active" data-category="Todas">Todas</button></li>
-                <li><button class="filter-btn" data-category="Trabajo">Trabajo</button></li>
-                <li><button class="filter-btn" data-category="Formación">Formación</button></li>
-                <li><button class="filter-btn" data-category="Equipo">Equipo</button></li>
-            </ul>
-        </div>
-    </aside>
+    
 
 
     <script src="Script2.js"></script>
