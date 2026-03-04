@@ -1,6 +1,5 @@
 ﻿
-/Estilo base/
-{
+google-btn {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -95,19 +94,15 @@ body {
 
 /* Cabecera */
 header {
-    background-color: #3A5BA0;
+    background-color: #B3446C;
     padding: 20px;
     color: #FFFF00;
     border: 2px solid black;
     text-align: center;
     font-size: 2em;
     margin-bottom: 20px;
-    text
-        {color: yellow;
-        text-shadow: 2px 2px 4px red, /* Sombras de profundidad en rojo */
-        -2px -2px 4px white; /* Luces blancas para contraste */
-        }
 }
+
 
 /* Tareas */
 .add-task {
