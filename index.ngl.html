@@ -12,6 +12,10 @@
 
 
 <body>
+    <header>
+        <h1> Taskflow ORKSHOP Project </h1>
+    </header>
+
     <div class="container">
         <div class="menu-toggle" id="menuToggle">
             <span class="menu-icon">&#9776;</span>
@@ -28,163 +32,104 @@
         </nav>
 
         <div class="content">
-            <header>
-                <h1> Bienvenido a las areas de Tareas del ORKSHOP </h1>
-            </header>
-
-            <section id="taskFilterSection">
-                <label for="taskFilter">Filtrar por prioridad:</label>
-                <select id="taskFilter" onchange="filterTasks()">
-                    <option value="all">Todas</option>
-                    <option value="Alta">Alta</option>
-                    <option value="Media/Alta">Media/Alta</option>
-                    <option value="Baja">Baja</option>
-                </select>
-            </section>
-
-            <section id="taskSection">
-                <div class="add-task">
-                    <input type="text" id="taskTitle" placeholder="Nueva tarea" required>
-                    <select id="taskPriority">
+            <main>
+                <section id="taskFilterSection">
+                    <label for="taskFilter">Filtrar por prioridad:</label>
+                    <select id="taskFilter" onchange="filterTasks()">
+                        <option value="all">Todas</option>
                         <option value="Alta">Alta</option>
                         <option value="Media/Alta">Media/Alta</option>
                         <option value="Baja">Baja</option>
                     </select>
-                    <button onclick="addTask()">Añadir Tarea</button>
-                </div>
+                </section>
 
-                <div class="task-list" id="taskList">
-                    <div class="task" data-priority="Alta">
-                        <h3> Proyecto Orco WARBOSS </h3>
-                        <p class="task-category">Trabajo</p>
-                        <span class="badge priority-high">Alta</span>
+                <section id="taskSection">
+                    <div class="add-task">
+                        <input type="text" id="taskTitle" placeholder="Nueva tarea" required>
+                        <select id="taskPriority">
+                            <option value="Alta">Alta</option>
+                            <option value="Media/Alta">Media/Alta</option>
+                            <option value="Baja">Baja</option>
+                        </select>
+                        <button onclick="addTask()">Añadir Tarea</button>
                     </div>
+
                     <div class="task-list" id="taskList">
-                        <div class="task" data-priority="Media/Alta">
-                            <h3> Organizar y Limpiar </h3>
-                            <p class="task-category">Taller</p>
-                            <span class="badge priority-medium-high">Media/Alta</span>
+                        <div class="task" data-priority="Alta">
+                            <h3> Proyecto Orco WARBOSS </h3>
+                            <p class="task-category">Trabajo</p>
+                            <span class="badge priority-high">Alta</span>
                         </div>
-                        <div class="task" data-priority="Baja">
-                            <h3> Hacer Ejercicio </h3>
-                            <p class="task-category">Personales</p>
-                            <span class="badge priority-low">Baja</span>
+                        <div class="task-list" id="taskList">
+                            <div class="task" data-priority="Media/Alta">
+                                <h3> Organizar y Limpiar </h3>
+                                <p class="task-category">Taller</p>
+                                <span class="badge priority-medium-high">Media/Alta</span>
+                            </div>
+                            <div class="task" data-priority="Baja">
+                                <h3> Hacer Ejercicio </h3>
+                                <p class="task-category">Personales</p>
+                                <span class="badge priority-low">Baja</span>
+                            </div>
                         </div>
+
+                </section>
+
+                <section>
+                    <div class="task-list" id="taskList">
+                        <form id="taskForm">
+                            <input type="text" id="taskInput" placeholder="Escribe una tarea" />
+                            <button type="submit" id="addTaskBtn">Agregar Tarea</button>
+                        </form>
                     </div>
 
-            </section>
-
-            <section>
-                <div class="task-list" id="taskList">
-                    <form id="taskForm">
-                        <input type="text" id="taskInput" placeholder="Escribe una tarea" />
-                        <button type="submit" id="addTaskBtn">Agregar Tarea</button>
-                    </form>
-                </div>
-                
-            </section> 
+                </section>
 
 
 
 
-            <section id="calendarSection" style="display:none;">
-                <h2>Calendario</h2>
-                <div id="calendar"></div>
-            </section>
+                <section id="calendarSection" style="display:none;">
+                    <h2>Calendario</h2>
+                    <div id="calendar"></div>
+                </section>
 
 
-            <section id="notesSection" style="display:none;">
-                <h2>Mis Notas</h2>
-                <textarea id="notes" placeholder="Escribe tus notas aquí..."></textarea>
-            </section>
+                <section id="notesSection" style="display:none;">
+                    <h2>Mis Notas</h2>
+                    <textarea id="notes" placeholder="Escribe tus notas aquí..."></textarea>
+                </section>
 
 
-
+            </main>
         </div>
-
-
-    
-
-
 
     </div>
 
-    <script>
-        // Función para cambiar la visibilidad de las secciones
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.style.display = 'none';
-            });
+    <aside>
+        <h3>Filtros y Búsqueda</h3>
 
-            document.getElementById(sectionId).style.display = 'block';
-        }
+        <div class="filter-group">
+            <label for="searchInput">Buscar tarea:</label>
+            <input type="text" id="searchInput" placeholder="Escribe para buscar..." />
+        </div>
 
-        // Función para agregar tareas
-        function addTask() {
-            const taskTitle = document.getElementById('taskTitle').value;
-            const taskPriority = document.getElementById('taskPriority').value;
-            const taskList = document.getElementById('taskList');
-
-            if (taskTitle.trim() !== '') {
-                const taskElement = document.createElement('div');
-                taskElement.classList.add('task');
-                taskElement.setAttribute('data-priority', taskPriority);
-
-                const taskTitleElement = document.createElement('h3');
-                taskTitleElement.textContent = taskTitle;
-
-                const taskCategoryElement = document.createElement('p');
-                taskCategoryElement.classList.add('task-category');
-                taskCategoryElement.textContent = 'Categoría: ' + (taskPriority === 'Alta' ? 'Trabajo' : taskPriority === 'Media/Alta' ? 'Hogar' : 'Personales');
-
-                const badgeElement = document.createElement('span');
-                badgeElement.classList.add('badge');
-                badgeElement.classList.add('priority-' + taskPriority.toLowerCase().replace('/', '').replace(' ', '-'));
-                badgeElement.textContent = taskPriority;
-
-                taskElement.appendChild(taskTitleElement);
-                taskElement.appendChild(taskCategoryElement);
-                taskElement.appendChild(badgeElement);
-
-                taskList.appendChild(taskElement);
-
-                // Limpiar el campo de tarea
-                document.getElementById('taskTitle').value = '';
-            }
-        }
-
-        // Función para filtrar las tareas por prioridad
-        function filterTasks() {
-            const filterValue = document.getElementById('taskFilter').value;
-            const tasks = document.querySelectorAll('.task');
-
-            tasks.forEach(task => {
-                const taskPriority = task.getAttribute('data-priority');
-
-                if (filterValue === 'all' || taskPriority === filterValue) {
-                    task.style.display = 'block';
-                } else {
-                    task.style.display = 'none';
-                }
-            });
-        }
-
-        // Menú desplegable (toggle)
-        document.getElementById('menuToggle').addEventListener('click', function () {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
-        });
-
-        // Cerrar el menú desplegable
-        document.getElementById('closeMenu').addEventListener('click', function () {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.remove('active');
-        });
-    </script>
+        <div class="filter-group">
+            <p>Categorías:</p>
+            <ul class="category-filters" id="categoryFilters">
+                <li><button class="filter-btn active" data-category="Todas">Todas</button></li>
+                <li><button class="filter-btn" data-category="Trabajo">Trabajo</button></li>
+                <li><button class="filter-btn" data-category="Formación">Formación</button></li>
+                <li><button class="filter-btn" data-category="Equipo">Equipo</button></li>
+            </ul>
+        </div>
+    </aside>
 
 
-  
+    <script src="Script2.js"></script>
+
+
+
+
 
     <footer>
         <p>&copy; Marzo 2026 Mi AppOrk.  Todos los derechos reservados (ork C) </p>
