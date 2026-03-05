@@ -5,138 +5,138 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>  taskflow-project </title>
-    <link rel="stylesheet" href="StyleSheet1.css">
-  
-</head>
+    <link rel="stylesheet" href="css/styles.css">
+
+    </head>
 
 
 
-<body>
-   
-    <div class="container">
-        <div class="menu-toggle" id="menuToggle">
-            <span class="menu-icon">&#9776;</span>
-        </div>
+    <body>
 
-        <nav class="sidebar" id="sidebar">
-            <button class="close-btn" id="closeMenu">×</button>
-            <ul class="sidebar-menu">
-                <li><a href="#" onclick="showSection('taskSection')">📝 Tareas</a></li>
-                <li><a href="#" onclick="showSection('calendarSection')">📅 Calendario</a></li>
-                <li><a href="#" onclick="showSection('notesSection')">🗒️ Notas</a></li>
-                <li><a href="#">⚙️ Configuración</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <div class="menu-toggle" id="menuToggle">
+                <span class="menu-icon">&#9776;</span>
+            </div>
 
-        <div class="content">
+            <nav class="sidebar" id="sidebar">
+                <button class="close-btn" id="closeMenu">×</button>
+                <ul class="sidebar-menu">
+                    <li><a href="#" onclick="showSection('taskSection')">📝 Tareas</a></li>
+                    <li><a href="#" onclick="showSection('calendarSection')">📅 Calendario</a></li>
+                    <li><a href="#" onclick="showSection('notesSection')">🗒️ Notas</a></li>
+                    <li><a href="#">⚙️ Configuración</a></li>
+                </ul>
+            </nav>
 
-            <header>
-                <h1> Taskflow ORKSHOP Project </h1>
-            </header>
+            <div class="content">
 
-            <main>
-                <section id="taskFilterSection">
-                    <label for="taskFilter">Filtrar por prioridad:</label>
-                    <select id="taskFilter" onchange="filterTasks()">
-                        <option value="all">Todas</option>
-                        <option value="Alta">Alta</option>
-                        <option value="Media/Alta">Media/Alta</option>
-                        <option value="Baja">Baja</option>
-                    </select>
-                </section>
+                <header>
+                    <h1> Taskflow ORKSHOP Project </h1>
+                </header>
 
-                <section id="taskSection">
-                    <div class="add-task">
-                        <input type="text" id="taskTitle" placeholder="Nueva tarea" required>
-                        <select id="taskPriority">
+                <main>
+                    <section id="taskFilterSection">
+                        <label for="taskFilter">Filtrar por prioridad:</label>
+                        <select id="taskFilter" onchange="filterTasks()">
+                            <option value="all">Todas</option>
                             <option value="Alta">Alta</option>
                             <option value="Media/Alta">Media/Alta</option>
                             <option value="Baja">Baja</option>
                         </select>
-                        <button onclick="addTask()">Añadir Tarea</button>
-                    </div>
+                    </section>
 
-                    <div class="task-list" id="taskList">
-                        <div class="task" data-priority="Alta">
-                            <h3> Proyecto Orco WARBOSS </h3>
-                            <p class="task-category">Trabajo</p>
-                            <span class="badge priority-high">Alta</span>
+                    <section id="taskSection">
+                        <div class="add-task">
+                            <input type="text" id="taskTitle" placeholder="Nueva tarea" required>
+                            <select id="taskPriority">
+                                <option value="Alta">Alta</option>
+                                <option value="Media/Alta">Media/Alta</option>
+                                <option value="Baja">Baja</option>
+                            </select>
+                            <button onclick="addTask()">Añadir Tarea</button>
                         </div>
+
                         <div class="task-list" id="taskList">
-                            <div class="task" data-priority="Media/Alta">
-                                <h3> Organizar y Limpiar </h3>
-                                <p class="task-category">Taller</p>
-                                <span class="badge priority-medium-high">Media/Alta</span>
+                            <div class="task" data-priority="Alta">
+                                <h3> Proyecto Orco WARBOSS </h3>
+                                <p class="task-category">Trabajo</p>
+                                <span class="badge priority-high">Alta</span>
                             </div>
-                            <div class="task" data-priority="Baja">
-                                <h3> Hacer Ejercicio </h3>
-                                <p class="task-category">Personales</p>
-                                <span class="badge priority-low">Baja</span>
+                            <div class="task-list" id="taskList">
+                                <div class="task" data-priority="Media/Alta">
+                                    <h3> Organizar y Limpiar </h3>
+                                    <p class="task-category">Taller</p>
+                                    <span class="badge priority-medium-high">Media/Alta</span>
+                                </div>
+                                <div class="task" data-priority="Baja">
+                                    <h3> Hacer Ejercicio </h3>
+                                    <p class="task-category">Personales</p>
+                                    <span class="badge priority-low">Baja</span>
+                                </div>
                             </div>
+
+                    </section>
+
+                    <section>
+                        <div class="task-list" id="taskList">
+                            <form id="taskForm">
+                                <input type="text" id="taskInput" placeholder="Escribe una tarea" />
+                                <button type="submit" id="addTaskBtn">Agregar Tarea</button>
+                            </form>
                         </div>
 
-                </section>
-
-                <section>
-                    <div class="task-list" id="taskList">
-                        <form id="taskForm">
-                            <input type="text" id="taskInput" placeholder="Escribe una tarea" />
-                            <button type="submit" id="addTaskBtn">Agregar Tarea</button>
-                        </form>
-                    </div>
-
-                </section>
+                    </section>
 
 
 
 
-                <section id="calendarSection" style="display:none;">
-                    <h2>Calendario</h2>
-                    <div id="calendar"></div>
-                </section>
+                    <section id="calendarSection" style="display:none;">
+                        <h2>Calendario</h2>
+                        <div id="calendar"></div>
+                    </section>
 
 
-                <section id="notesSection" style="display:none;">
-                    <h2>Mis Notas</h2>
-                    <textarea id="notes" placeholder="Escribe tus notas aquí..."></textarea>
-                </section>
+                    <section id="notesSection" style="display:none;">
+                        <h2>Mis Notas</h2>
+                        <textarea id="notes" placeholder="Escribe tus notas aquí..."></textarea>
+                    </section>
 
 
-            </main>
-        </div>
-
-        <div>
-            <h3>Filtros y Búsqueda</h3>
-
-            <div class="filter-group">
-                <label for="searchInput">Buscar tarea:</label>
-                <input type="text" id="searchInput" placeholder="Escribe para buscar..." />
+                </main>
             </div>
 
-            <div class="filter-group">
-                <p>Categorías:</p>
-                <ul class="category-filters" id="categoryFilters">
-                    <li><button class="filter-btn active" data-category="Todas">Todas</button></li>
-                    <li><button class="filter-btn" data-category="Trabajo">Trabajo</button></li>
-                    <li><button class="filter-btn" data-category="Formación">Formación</button></li>
-                    <li><button class="filter-btn" data-category="Equipo">Equipo</button></li>
-                </ul>
+            <div>
+                <h3>Filtros y Búsqueda</h3>
+
+                <div class="filter-group">
+                    <label for="searchInput">Buscar tarea:</label>
+                    <input type="text" id="searchInput" placeholder="Escribe para buscar..." />
+                </div>
+
+                <div class="filter-group">
+                    <p>Categorías:</p>
+                    <ul class="category-filters" id="categoryFilters">
+                        <li><button class="filter-btn active" data-category="Todas">Todas</button></li>
+                        <li><button class="filter-btn" data-category="Trabajo">Trabajo</button></li>
+                        <li><button class="filter-btn" data-category="Formación">Formación</button></li>
+                        <li><button class="filter-btn" data-category="Equipo">Equipo</button></li>
+                    </ul>
+                </div>
             </div>
+
         </div>
 
-    </div>
-
-    
 
 
-    <script src="Script2.js"></script>
+
+        <script src="Script2.js"></script>
 
 
 
 
 
-    <footer>
-        <p>&copy; Marzo 2026 Mi AppOrk.  Todos los derechos reservados (ork C) </p>
-    </footer>
-</body>
+        <footer>
+            <p>&copy; Marzo 2026 Mi AppOrk.  Todos los derechos reservados (ork C) </p>
+        </footer>
+    </body>
 </html>
