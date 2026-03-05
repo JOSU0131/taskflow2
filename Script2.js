@@ -1,3 +1,18 @@
+
+// Dark Mode Toggle
+function toggleDarkMode() {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+}
+
+// Check saved preference on page load
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.documentElement.classList.add('dark');
+    }
+});
+
+
 // JavaScript source code
 document.addEventListener('DOMContentLoaded', () => {
     const taskForm = document.getElementById('taskForm');
