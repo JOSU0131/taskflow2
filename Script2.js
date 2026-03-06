@@ -1,9 +1,27 @@
-
+ï»¿
 // Dark Mode Toggle
-function toggleDarkMode() {
-    document.documentElement.classList.toggle('dark');
-    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+const toggleBtn = document.getElementById("darkModeToggle");
+
+// Load saved mode on page load
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+    toggleBtn.textContent = "â˜€ï¸";
 }
+
+// Toggle dark mode on click
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        toggleBtn.textContent = "â˜€ï¸";
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        toggleBtn.textContent = "ðŸŒ™";
+        localStorage.setItem("darkMode", "disabled");
+    }
+});
+
+
 
 // Check saved preference on page load
 window.addEventListener('DOMContentLoaded', () => {
@@ -80,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateNovedades();
     }
 
-    // Actualizar sección de Novedades (últimos 3 días)
+    // Actualizar secciÃ³n de Novedades (Ãºltimos 3 dÃ­as)
     function updateNovedades() {
         const recentTasksCountEl = document.getElementById('recentTasksCount');
         const recentTasksListEl = document.getElementById('recentTasksList');
@@ -91,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const threeDaysAgo = Date.now() - (3 * 24 * 60 * 60 * 1000);
 
-        // Asumimos que task.id es el timestamp de creación
+        // Asumimos que task.id es el timestamp de creaciÃ³n
         const recentTasks = tasks.filter(task => {
             const taskTimestamp = parseInt(task.id);
             return !isNaN(taskTimestamp) && taskTimestamp >= threeDaysAgo;
-        }).sort((a, b) => parseInt(b.id) - parseInt(a.id)); // Más recientes primero
+        }).sort((a, b) => parseInt(b.id) - parseInt(a.id)); // MÃ¡s recientes primero
 
         recentTasksCountEl.textContent = recentTasks.length;
 
@@ -109,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             recentTasksListEl.appendChild(createTaskElement(task, false));
         });
 
-        // Renderizar el resto si hay más de 3
+        // Renderizar el resto si hay mÃ¡s de 3
         if (recentTasks.length > 3) {
             moreRecentTasksContainerEl.style.display = 'block';
             const restTasks = recentTasks.slice(3);
@@ -121,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 4. Añadir Tarea
+    // 4. AÃ±adir Tarea
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -158,12 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 6. Búsqueda por texto (Tiempo real)
+    // 6. BÃºsqueda por texto (Tiempo real)
     searchInput.addEventListener('input', () => {
         renderTasks();
     });
 
-    // 7. Filtro por categorías
+    // 7. Filtro por categorÃ­as
     categoryFilters.forEach(btn => {
         btn.addEventListener('click', (e) => {
             // Actualizar botones activos
