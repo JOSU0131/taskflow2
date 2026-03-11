@@ -1,10 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.vercel.com/1999/xhtml">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>  taskflow-project </title>
+    <!-- Tailwind via CDN so you can start using utility classes (dark mode based on .dark class) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        };
+    </script>
     <link rel="stylesheet" href="StyleSheet1.css">
 
     </head>
@@ -49,45 +56,31 @@
                     </section>
 
                     <section id="taskSection">
-                        <div class="add-task">
-                            <input type="text" id="taskTitle" placeholder="Nueva tarea" required>
-                            <select id="taskPriority">
-                                <option value="Alta">Alta</option>
-                                <option value="Media/Alta">Media/Alta</option>
-                                <option value="Baja">Baja</option>
-                            </select>
-                            <button onclick="addTask()">Añadir Tarea</button>
-                        </div>
+                        <div class="add-task app">
+                            <h2>Mis tareas</h2>
+                            <!-- Formulario conectado a Script2.js (newTaskTitle, newTaskCategory, newTaskPriority) -->
+                            <form id="taskForm" class="task-form">
+                                <input type="text" id="newTaskTitle" placeholder="Nueva tarea" required />
 
-                        <div class="task-list" id="taskList">
-                            <div class="task" data-priority="Alta">
-                                <h3> Proyecto Orco WARBOSS </h3>
-                                <p class="task-category">Trabajo</p>
-                                <span class="badge priority-high">Alta</span>
-                            </div>
-                            <div class="task-list" id="taskList">
-                                <div class="task" data-priority="Media/Alta">
-                                    <h3> Organizar y Limpiar </h3>
-                                    <p class="task-category">Taller</p>
-                                    <span class="badge priority-medium-high">Media/Alta</span>
-                                </div>
-                                <div class="task" data-priority="Baja">
-                                    <h3> Hacer Ejercicio </h3>
-                                    <p class="task-category">Personales</p>
-                                    <span class="badge priority-low">Baja</span>
-                                </div>
-                            </div>
+                                <select id="newTaskCategory">
+                                    <option value="Trabajo">Trabajo</option>
+                                    <option value="Formación">Formación</option>
+                                    <option value="Equipo">Equipo</option>
+                                    <option value="Personal">Personal</option>
+                                </select>
 
-                    </section>
+                                <select id="newTaskPriority">
+                                    <option value="Alta">Alta</option>
+                                    <option value="Media">Media</option>
+                                    <option value="Baja">Baja</option>
+                                </select>
 
-                    <section>
-                        <div class="task-list" id="taskList">
-                            <form id="taskForm">
-                                <input type="text" id="taskInput" placeholder="Escribe una tarea" />
                                 <button type="submit" id="addTaskBtn">Agregar Tarea</button>
                             </form>
-                        </div>
 
+                            <!-- Lista de tareas que Script2.js rellenará dinámicamente -->
+                            <ul class="task-list" id="taskList"></ul>
+                        </div>
                     </section>
 
 

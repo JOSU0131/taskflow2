@@ -1,35 +1,31 @@
-﻿
+
 // Dark Mode Toggle
 const toggleBtn = document.getElementById("darkModeToggle");
 
-// Load saved mode on page load
+// Apply saved dark mode preference on initial load
 if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
-    toggleBtn.textContent = "☀️";
+    document.documentElement.classList.add("dark");
+    if (toggleBtn) {
+        toggleBtn.textContent = "☀️";
+    }
 }
 
-// Toggle dark mode on click
-toggleBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
+// Toggle dark mode on click (updates CSS class and Tailwind's .dark)
+if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark-mode");
+        document.documentElement.classList.toggle("dark", isDark);
 
-    if (document.body.classList.contains("dark-mode")) {
-        toggleBtn.textContent = "☀️";
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        toggleBtn.textContent = "🌙";
-        localStorage.setItem("darkMode", "disabled");
-    }
-});
-
-
-
-// Check saved preference on page load
-window.addEventListener('DOMContentLoaded', () => {
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.documentElement.classList.add('dark');
-    }
-});
-
+        if (isDark) {
+            toggleBtn.textContent = "☀️";
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            toggleBtn.textContent = "🌙";
+            localStorage.setItem("darkMode", "disabled");
+        }
+    });
+}
 
 // JavaScript source code
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,6 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskList = document.getElementById('taskList');
     const searchInput = document.getElementById('searchInput');
     const categoryFilters = document.querySelectorAll('.filter-btn');
+
+    // Sidebar (menú lateral) open/close
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const closeMenu = document.getElementById('closeMenu');
+
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+    }
+
+    if (closeMenu && sidebar) {
+        closeMenu.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+    }
 
     let tasks = [];
     let currentFilter = 'Todas';
