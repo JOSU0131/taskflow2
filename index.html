@@ -12,7 +12,6 @@
           colors: {
             sidebar: '#4E73DF',
             sidebarDark: '#3A5BA0',
-            headerBg: '#8B4513',
           }
         }
       }
@@ -20,158 +19,172 @@
   </script>
   <style>
     /* Sidebar transition */
-    .sidebar { transition: width 0.5s; }
-    .task:hover { transform: scale(1.05); }
+    .sidebar { transition: width 0.5s; overflow: hidden; }
+    .sidebar.active { width: 200px !important; }
     .task { transition: transform 0.3s ease; }
-    .filter-btn.active { background-color: #3892dd; color: white; border-color: #3892dd; }
+    .task:hover { transform: scale(1.05); }
+    .filter-btn.active { background-color: #3892dd !important; color: white !important; border-color: #3892dd !important; }
 
-    /* Dark mode overrides */
+    /* Dark mode */
     .dark-mode { background-color: #1a1a1a; color: #f1f1f1; }
-    .dark-mode header { background-color: #333; color: #FFD700; }
+    .dark-mode header { background-color: #333 !important; color: #FFD700 !important; }
     .dark-mode .task { background-color: #111827; color: #e5e7eb; }
-    .dark-mode .add-task input,
-    .dark-mode .add-task select { background-color: #111827; color: #e5e7eb; border-color: #4b5563; }
-    .dark-mode .add-task button { background-color: #4f46e5; color: #e5e7eb; }
+    .dark-mode input, .dark-mode select {
+      background-color: #111827; color: #e5e7eb; border-color: #4b5563;
+    }
+
+    /* Task items rendered by JS */
+    .task-item {
+      display: flex; align-items: center; gap: 10px;
+      background: white; border-radius: 8px; padding: 12px 15px;
+      margin-bottom: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      list-style: none;
+    }
+    .task-title { flex: 1; font-weight: 600; }
+    .task-category { font-size: 0.8em; color: #888; }
+    .task-badge { padding: 3px 10px; border-radius: 20px; color: white; font-size: 0.75em; font-weight: bold; }
+    .badge-high { background-color: #e74c3c; }
+    .badge-medium { background-color: #f1c40f; }
+    .badge-low { background-color: #2ecc71; }
+    .delete-btn {
+      background-color: #e74c3c; color: white; border: none;
+      border-radius: 50%; width: 25px; height: 25px;
+      cursor: pointer; font-weight: bold; opacity: 0.7;
+    }
+    .delete-btn:hover { opacity: 1; }
   </style>
 </head>
 
 <body class="bg-slate-100 text-gray-800 font-sans">
 
-  <div class="flex flex-row min-h-screen relative">
+<div class="flex flex-row min-h-screen relative">
 
-    <!-- ── MENU TOGGLE ─────────────────────────────── -->
-    <div class="absolute top-5 left-5 cursor-pointer z-50" id="menuToggle">
-      <span class="text-3xl text-sidebar">&#9776;</span>
-    </div>
+  <!-- ── MENU TOGGLE ───────────────────────────────── -->
+  <div class="absolute top-5 left-5 cursor-pointer z-50" id="menuToggle">
+    <span class="text-3xl" style="color:#4E73DF">&#9776;</span>
+  </div>
 
-    <!-- ── SIDEBAR ─────────────────────────────────── -->
-    <nav class="sidebar w-0 overflow-hidden bg-sidebar text-white fixed top-0 left-0 h-full pt-5 shadow-md z-40" id="sidebar">
-      <button class="absolute top-2 right-2 text-3xl text-white bg-transparent border-none cursor-pointer" id="closeMenu">×</button>
-      <ul class="list-none p-0 mt-8">
-        <li class="py-4 px-3 text-center border-b border-sidebarDark hover:bg-sidebarDark">
-          <a href="#" class="no-underline text-white text-lg" onclick="showSection('taskSection')">📝 Tareas</a>
-        </li>
-        <li class="py-4 px-3 text-center border-b border-sidebarDark hover:bg-sidebarDark">
-          <a href="#" class="no-underline text-white text-lg" onclick="showSection('calendarSection')">📅 Calendario</a>
-        </li>
-        <li class="py-4 px-3 text-center border-b border-sidebarDark hover:bg-sidebarDark">
-          <a href="#" class="no-underline text-white text-lg" onclick="showSection('notesSection')">🗒️ Notas</a>
-        </li>
-        <li class="py-4 px-3 text-center border-b border-sidebarDark hover:bg-sidebarDark">
-          <a href="#" class="no-underline text-white text-lg">⚙️ Configuración</a>
-        </li>
-      </ul>
-    </nav>
+  <!-- ── SIDEBAR ───────────────────────────────────── -->
+  <nav class="sidebar w-0 bg-blue-600 text-white fixed top-0 left-0 h-full pt-5 shadow-md z-40" id="sidebar">
+    <button class="absolute top-2 right-2 text-3xl text-white bg-transparent border-none cursor-pointer" id="closeMenu">×</button>
+    <ul class="list-none p-0 mt-10">
+      <li class="py-4 px-3 text-center border-b border-blue-800 hover:bg-blue-800">
+        <a href="#" class="no-underline text-white text-lg" onclick="showSection('taskSection')">📝 Tareas</a>
+      </li>
+      <li class="py-4 px-3 text-center border-b border-blue-800 hover:bg-blue-800">
+        <a href="#" class="no-underline text-white text-lg" onclick="showSection('calendarSection')">📅 Calendario</a>
+      </li>
+      <li class="py-4 px-3 text-center border-b border-blue-800 hover:bg-blue-800">
+        <a href="#" class="no-underline text-white text-lg" onclick="showSection('notesSection')">🗒️ Notas</a>
+      </li>
+      <li class="py-4 px-3 text-center border-b border-blue-800 hover:bg-blue-800">
+        <a href="#" class="no-underline text-white text-lg">⚙️ Configuración</a>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- ── MAIN CONTENT ────────────────────────────── -->
-    <div class="ml-0 md:ml-56 p-5 w-full transition-all duration-300" id="mainContent">
+  <!-- ── MAIN CONTENT ──────────────────────────────── -->
+  <div class="p-5 w-full" style="margin-left: 20px;" id="mainContent">
 
-      <!-- Header -->
-      <header class="bg-amber-800 text-yellow-300 text-center text-3xl font-bold py-5 px-4 border-2 border-black mb-5 rounded">
-        Taskflow WORKSHOP Project
-      </header>
+    <!-- Header with dark mode toggle -->
+    <header class="bg-amber-800 text-yellow-300 text-center text-3xl font-bold py-5 px-4 border-2 border-black mb-5 rounded relative">
+      Taskflow WORKSHOP Project
+      <!-- ✅ FIX 1: Dark mode button with correct id for Script2.js -->
+      <button id="darkModeToggle"
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-2xl bg-transparent border-none cursor-pointer">
+        🌙
+      </button>
+    </header>
 
-      <main>
+    <main>
 
-        <!-- ── FILTER BY PRIORITY ──────────────────── -->
-        <section id="taskFilterSection" class="mb-5">
-          <label for="taskFilter" class="font-bold mr-2">Filtrar por prioridad:</label>
-          <select id="taskFilter" onchange="filterTasks()"
-            class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:border-blue-400">
-            <option value="all">Todas</option>
+      <!-- ── FILTER BY PRIORITY ────────────────────── -->
+      <section class="mb-5">
+        <label for="taskFilter" class="font-bold mr-2">Filtrar por prioridad:</label>
+        <select id="taskFilter" onchange="filterTasks()"
+          class="border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none">
+          <option value="all">Todas</option>
+          <option value="Alta">Alta</option>
+          <option value="Media/Alta">Media/Alta</option>
+          <option value="Baja">Baja</option>
+        </select>
+      </section>
+
+      <!-- ── TASK SECTION ──────────────────────────── -->
+      <section id="taskSection">
+
+        <!-- ✅ FIX 2: form id and input ids now match Script2.js exactly -->
+        <form id="taskForm" class="flex flex-col items-start mb-5 gap-2">
+          <input type="text" id="newTaskTitle" placeholder="Nueva tarea" required
+            class="w-4/5 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400" />
+          <select id="newTaskCategory"
+            class="w-4/5 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400">
+            <option value="Trabajo">Trabajo</option>
+            <option value="Formación">Formación</option>
+            <option value="Equipo">Equipo</option>
+            <option value="Personal">Personal</option>
+          </select>
+          <select id="newTaskPriority"
+            class="w-4/5 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400">
             <option value="Alta">Alta</option>
-            <option value="Media/Alta">Media/Alta</option>
+            <option value="Media">Media</option>
             <option value="Baja">Baja</option>
           </select>
-        </section>
+          <button type="submit"
+            class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded cursor-pointer transition-colors duration-300">
+            Añadir Tarea
+          </button>
+        </form>
 
-        <!-- ── TASK SECTION ────────────────────────── -->
-        <section id="taskSection">
+        <!-- ✅ FIX 3: single taskList id — JS renders tasks here as <li> elements -->
+        <ul id="taskList" class="p-0 m-0"></ul>
 
-          <!-- Add task form (single, unified — BUG FIX: removed duplicate form) -->
-          <div class="add-task flex flex-col items-start mb-5 gap-2">
-            <input type="text" id="taskTitle" placeholder="Nueva tarea"
-              class="w-4/5 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400" />
-            <select id="taskPriority"
-              class="w-4/5 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400">
-              <option value="Alta">Alta</option>
-              <option value="Media/Alta">Media/Alta</option>
-              <option value="Baja">Baja</option>
-            </select>
-            <button onclick="addTask()"
-              class="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded cursor-pointer transition-colors duration-300">
-              Añadir Tarea
-            </button>
-          </div>
+      </section>
 
-          <!-- Task list (single id — BUG FIX: removed duplicate taskList ids) -->
-          <div class="task-list flex flex-wrap gap-4" id="taskList">
-            <div class="task bg-white rounded-lg p-4 w-60 shadow" data-priority="Alta">
-              <h3 class="text-lg font-semibold mb-2">Proyecto Orco WARBOSS</h3>
-              <p class="task-category text-sm text-gray-500 mb-2">Trabajo</p>
-              <span class="badge bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full">Alta</span>
-            </div>
-            <div class="task bg-white rounded-lg p-4 w-60 shadow" data-priority="Media/Alta">
-              <h3 class="text-lg font-semibold mb-2">Organizar y Limpiar</h3>
-              <p class="task-category text-sm text-gray-500 mb-2">Taller</p>
-              <span class="badge bg-yellow-400 text-white text-xs font-bold px-3 py-1 rounded-full">Media/Alta</span>
-            </div>
-            <div class="task bg-white rounded-lg p-4 w-60 shadow" data-priority="Baja">
-              <h3 class="text-lg font-semibold mb-2">Hacer Ejercicio</h3>
-              <p class="task-category text-sm text-gray-500 mb-2">Personales</p>
-              <span class="badge bg-green-400 text-white text-xs font-bold px-3 py-1 rounded-full">Baja</span>
-            </div>
-          </div>
-        </section>
+      <!-- ── CALENDAR ──────────────────────────────── -->
+      <section id="calendarSection" style="display:none;" class="mt-5">
+        <h2 class="text-xl font-bold mb-3">Calendario</h2>
+        <div id="calendar"></div>
+      </section>
 
-        <!-- ── CALENDAR ────────────────────────────── -->
-        <section id="calendarSection" class="hidden mt-5">
-          <h2 class="text-xl font-bold mb-3">Calendario</h2>
-          <div id="calendar"></div>
-        </section>
+      <!-- ── NOTES ────────────────────────────────── -->
+      <section id="notesSection" style="display:none;" class="mt-5">
+        <h2 class="text-xl font-bold mb-3">Mis Notas</h2>
+        <textarea id="notes" placeholder="Escribe tus notas aquí..."
+          class="w-full h-48 p-4 border border-gray-300 rounded text-base resize-none focus:outline-none focus:border-blue-400"></textarea>
+      </section>
 
-        <!-- ── NOTES ──────────────────────────────── -->
-        <section id="notesSection" class="hidden mt-5">
-          <h2 class="text-xl font-bold mb-3">Mis Notas</h2>
-          <textarea id="notes" placeholder="Escribe tus notas aquí..."
-            class="w-full h-48 p-4 border border-gray-300 rounded text-base resize-none focus:outline-none focus:border-blue-400"></textarea>
-        </section>
+    </main>
+  </div>
 
-      </main>
+  <!-- ── FILTERS & SEARCH PANEL ────────────────────── -->
+  <div class="p-5 shrink-0" style="width:220px;">
+    <h3 class="text-lg font-bold mb-4">Filtros y Búsqueda</h3>
+
+    <div class="mb-5">
+      <label for="searchInput" class="block font-bold mb-1 text-sm">Buscar tarea:</label>
+      <input type="text" id="searchInput" placeholder="Escribe para buscar..."
+        class="w-full px-3 py-2 text-sm border-2 border-blue-400 rounded focus:outline-none focus:border-blue-600" />
     </div>
 
-    <!-- ── FILTERS & SEARCH PANEL ──────────────────── -->
-    <div class="p-5 w-64 shrink-0">
-      <h3 class="text-lg font-bold mb-4">Filtros y Búsqueda</h3>
-
-      <div class="mb-5">
-        <label for="searchInput" class="block font-bold mb-1 text-sm">Buscar tarea:</label>
-        <input type="text" id="searchInput" placeholder="Escribe para buscar..."
-          class="w-full px-4 py-3 text-base border-2 border-blue-400 rounded focus:outline-none focus:border-blue-600 transition-colors" />
-        <button id="searchButton"
-          class="mt-2 w-full px-4 py-3 bg-blue-400 hover:bg-blue-600 text-white rounded cursor-pointer transition-colors duration-300 text-base font-semibold">
-          🔍 Buscar
-        </button>
-      </div>
-
-      <div>
-        <p class="font-bold mb-2 text-sm">Categorías:</p>
-        <ul class="category-filters list-none p-0 flex flex-col gap-2" id="categoryFilters">
-          <li><button class="filter-btn active w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer transition-colors" data-category="Todas">Todas</button></li>
-          <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer transition-colors" data-category="Trabajo">Trabajo</button></li>
-          <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer transition-colors" data-category="Formación">Formación</button></li>
-          <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer transition-colors" data-category="Equipo">Equipo</button></li>
-        </ul>
-      </div>
+    <div>
+      <p class="font-bold mb-2 text-sm">Categorías:</p>
+      <ul class="list-none p-0 flex flex-col gap-2" id="categoryFilters">
+        <li><button class="filter-btn active w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer" data-category="Todas">Todas</button></li>
+        <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer" data-category="Trabajo">Trabajo</button></li>
+        <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer" data-category="Formación">Formación</button></li>
+        <li><button class="filter-btn w-full text-left border border-gray-300 rounded px-3 py-2 text-sm cursor-pointer" data-category="Equipo">Equipo</button></li>
+      </ul>
     </div>
+  </div>
 
-  </div><!-- end .container -->
+</div>
 
-  <script src="Script2.js"></script>
+<script src="Script2.js"></script>
 
-  <footer class="text-center text-sm text-gray-500 py-4 border-t border-gray-200 mt-4">
-    <p>&copy; Marzo 2026 Mi AppOrk. Todos los derechos reservados (ork C)</p>
-  </footer>
+<footer class="text-center text-sm text-gray-500 py-4 border-t border-gray-200 mt-4">
+  <p>&copy; Marzo 2026 Mi AppOrk. Todos los derechos reservados (ork C)</p>
+</footer>
 
 </body>
 </html>
