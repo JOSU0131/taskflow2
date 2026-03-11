@@ -208,3 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadTasks();
 });
+
+// Función global para cambiar entre secciones desde el sidebar
+window.showSection = function (sectionId) {
+    const sections = ['taskSection', 'calendarSection', 'notesSection'];
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.style.display = (id === sectionId) ? 'block' : 'none';
+    });
+};
