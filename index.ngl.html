@@ -56,30 +56,41 @@
                     </section>
 
                     <section id="taskSection">
-                        <div class="add-task app">
-                            <h2>Mis tareas</h2>
+                        <!-- Card migrated to Tailwind (keeps existing classes for JS/CSS compatibility) -->
+                        <div class="add-task app bg-white dark:bg-slate-800 rounded-2xl shadow-lg px-6 py-5">
+                            <h2 class="text-lg font-semibold mb-3">Mis tareas</h2>
                             <!-- Formulario conectado a Script2.js (newTaskTitle, newTaskCategory, newTaskPriority) -->
-                            <form id="taskForm" class="task-form">
-                                <input type="text" id="newTaskTitle" placeholder="Nueva tarea" required />
+                            <form id="taskForm" class="task-form flex flex-wrap gap-3 mb-4">
+                                <input type="text"
+                                       id="newTaskTitle"
+                                       placeholder="Nueva tarea"
+                                       required
+                                       class="flex-1 min-w-[180px] rounded-md border border-slate-300 bg-white dark:bg-slate-900 dark:border-slate-600 px-3 py-2 text-sm" />
 
-                                <select id="newTaskCategory">
+                                <select id="newTaskCategory"
+                                        class="min-w-[140px] rounded-md border border-slate-300 bg-white dark:bg-slate-900 dark:border-slate-600 px-3 py-2 text-sm">
                                     <option value="Trabajo">Trabajo</option>
                                     <option value="Formación">Formación</option>
                                     <option value="Equipo">Equipo</option>
                                     <option value="Personal">Personal</option>
                                 </select>
 
-                                <select id="newTaskPriority">
+                                <select id="newTaskPriority"
+                                        class="min-w-[120px] rounded-md border border-slate-300 bg-white dark:bg-slate-900 dark:border-slate-600 px-3 py-2 text-sm">
                                     <option value="Alta">Alta</option>
                                     <option value="Media">Media</option>
                                     <option value="Baja">Baja</option>
                                 </select>
 
-                                <button type="submit" id="addTaskBtn">Agregar Tarea</button>
+                                <button type="submit"
+                                        id="addTaskBtn"
+                                        class="inline-flex items-center justify-center rounded-md bg-indigo-600 text-white text-sm font-semibold px-4 py-2 hover:bg-indigo-700 transition-colors">
+                                    Agregar Tarea
+                                </button>
                             </form>
 
                             <!-- Lista de tareas que Script2.js rellenará dinámicamente -->
-                            <ul class="task-list" id="taskList"></ul>
+                            <ul class="task-list space-y-2" id="taskList"></ul>
                         </div>
                     </section>
 

@@ -1,4 +1,4 @@
-﻿
+
 google-btn {
     margin: 0;
     padding: 0;
@@ -140,6 +140,37 @@ header {
     .dark-mode header {
         background-color: #333;
         color: #FFD700;
+    }
+
+    /* Softer dark palette for main task card */
+    .dark-mode .app {
+        background-color: #1f2933; /* dark slate */
+        color: #e5e7eb;            /* soft light gray */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Inputs and selects in dark mode */
+    .dark-mode .add-task input,
+    .dark-mode .add-task select,
+    .dark-mode .task-form input,
+    .dark-mode .task-form select {
+        background-color: #111827; /* very dark gray */
+        color: #e5e7eb;
+        border-color: #4b5563;
+    }
+
+    /* Form buttons in dark mode */
+    .dark-mode .add-task button,
+    .dark-mode .task-form button {
+        background-color: #4f46e5; /* indigo */
+        color: #e5e7eb;
+    }
+
+    /* Individual task cards in dark mode */
+    .dark-mode .task {
+        background-color: #111827;
+        color: #e5e7eb;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
 
 
